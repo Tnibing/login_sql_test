@@ -1,0 +1,7 @@
+{
+  "editor.fontSize": 16,
+  "editor.tabSize": 2,
+  "workbench.colorTheme": "Dracula",
+  "editor.fontFamily": "Cascadia Code, Fira Code",
+  "editor.fontLigatures": true
+}
