@@ -12,9 +12,11 @@
 
 			$mail = filter_input(INPUT_POST, "mail", FILTER_VALIDATE_EMAIL);
 
-			if (!empty($mail) && !empty($_POST["password"])) {
+			$pass = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
 
-				$query = "SELECT password FROM users WHERE user_mail = '{$_POST["mail"]}'";
+			if (!empty($mail) && !empty($pass)) {
+
+				$query = "SELECT password FROM users WHERE user_mail = '{$mail}'";
 
 				try{
 					$result = mysqli_query($connection, $query);
@@ -24,10 +26,10 @@
 
 						if ($row) {
 
-							if (password_verify($_POST["password"], $row["password"])) {
+							if (password_verify($pass, $row["password"])) {
 
 								$_SESSION["user"] = $mail;
-								$_SESSION["password"] = $_POST["password"];
+								$_SESSION["password"] = $pass;
 				
 								header("Location: home.php");
 
@@ -46,7 +48,7 @@
 					}
 				}
 				catch (mysqli_sql_exception) {
-					echo "No user with the mail {$_POST["mail"]} registered!<br>";
+					echo "No user with the mail {$mail} registered!<br>";
 				}
 
 			}
@@ -58,13 +60,13 @@
 		} elseif (isset($_POST["register"])) {
 
 			$mail = filter_input(INPUT_POST, "mail", FILTER_VALIDATE_EMAIL);
+			$pass = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
 
-			if (!empty($mail) && !empty($_POST["password"])) {
+			if (!empty($mail) && !empty($pass)) {
 
 				$user = $mail;
 
-				$password = $_POST["password"];
-				$hash = password_hash($password, PASSWORD_DEFAULT);
+				$hash = password_hash($pass, PASSWORD_DEFAULT);
 	
 				$query = "INSERT INTO users (user_mail, password) VALUES ('$user', '$hash')";
 	
