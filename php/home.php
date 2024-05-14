@@ -9,6 +9,7 @@
 
 	echo "<br>Hello {$user}, your password is {$password}";
 
+	// The post method gets triggered when the user clicks on the log out button
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		
 		session_destroy();
