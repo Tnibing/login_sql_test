@@ -21,7 +21,7 @@
 	function processLogin() {
 
 		// This connection param comes from the include("./database.php");
-		// The editor can't see it hence it markes it as an error, it does work!
+		// The editor can't see it hence it marks it as an error, it does work!
 		global $connection;
 
 		$mail = filter_input(INPUT_POST, "mail", FILTER_VALIDATE_EMAIL);
