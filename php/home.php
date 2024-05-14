@@ -7,6 +7,13 @@
 	$user = $_SESSION["user"];
 	$password = $_SESSION["password"];
 
+	if (empty($user) || empty($password)) {
+
+		session_destroy();
+
+		header("Location: index.php");
+	}
+
 	echo "<br>Hello {$user}, your password is {$password}";
 
 	// The post method gets triggered when the user clicks on the log out button
