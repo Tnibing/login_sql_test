@@ -48,7 +48,7 @@
 		$row = mysqli_fetch_assoc($result);
 
 		if (!$row) {
-			echo '<script type="text/javascript">alert("User not registered!<br>Please register to log in!")</script>';
+			echo '<script type="text/javascript">alert("User not registered!\nPlease register to log in!")</script>';
 			return;
 		}
 
