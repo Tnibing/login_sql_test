@@ -29,7 +29,7 @@
 		$pass = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
 
 		if (empty($mail) || empty($pass)) {
-			echo "Please enter a valid email and password!<br>";
+			echo '<script type="text/javascript">alert("Please enter a valid email and password!")</script>';
 			return;
 
 		}
@@ -48,12 +48,12 @@
 		$row = mysqli_fetch_assoc($result);
 
 		if (!$row) {
-			echo "User not registered!<br>Please register to log in!<br>";
+			echo '<script type="text/javascript">alert("User not registered!<br>Please register to log in!")</script>';
 			return;
 		}
 
 		if (!password_verify($pass, $row["password"])) {
-			echo "Incorrect password!<br>";
+			echo '<script type="text/javascript">alert("Incorrect password!")</script>';
 			return;
 		}
 
@@ -74,7 +74,7 @@
 		$pass = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
 
 		if (empty($mail) || empty($pass)) {
-			echo "Please, enter a valid email and password!";
+			echo '<script type="text/javascript">alert("Please, enter a valid email and password!")</script>';
 			return;
 		}
 
@@ -85,9 +85,9 @@
 		try {
 			mysqli_query($connection, $query);
 
-			echo "User registered!<br>";
+			echo '<script type="text/javascript">alert("User registered!")</script>';
 		} catch (mysqli_sql_exception) {
-			echo "That email is already registered!<br>";
+			echo '<script type="text/javascript">alert("That email is already registered!")</script>';
 
 			return;
 		}
